@@ -1,0 +1,34 @@
+<script type="text/javascript" src="/static/hazard_calculator/lib/jquery-1.11.1.min.js"></script>
+
+{% include 'autocomplete_light/static.html' %}
+
+{% block content %}
+<div id="content-main">
+
+	<form action="" method="POST">
+	{{ management_form }}
+	{% csrf_token %}
+
+	<table id="formula-rows" width="100%">
+		<tr align="left">
+			<th>CAS Number</th>
+			<th>Name</th>
+		</tr>
+
+		{% for form in formset %}
+		{% if form.errors %}
+		<tr>
+			<td class="highlight" colspan="4"><b>	 Please correct the error(s) in the following row. {{form.non_field_errors}}</b></td>
+		</tr>
+		{% endif %}
+		<tr class="formula_row">
+			<td class="number-cell">{{ form.cas }}{{ form.cas.errors }}</td>
+			<td class="amount-cell">{{ form.name }}{{ form.name.errors }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	<input id="formula-submit-button" type="submit" value="Submit Formula" />
+	</form>
+</div>
+
+{% endblock %}

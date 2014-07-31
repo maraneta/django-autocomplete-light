@@ -7,16 +7,18 @@ TEMPLATE_DEBUG = DEBUG
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite'),                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
-        'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
-        'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
-    }
-}
+from LOCAL_SECRETS import DATABASES, SECRET_KEY
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+#         'NAME': os.path.join(PROJECT_ROOT, 'db.sqlite'),                      # Or path to database file if using sqlite3.
+#         'USER': '',                      # Not used with sqlite3.
+#         'PASSWORD': '',                  # Not used with sqlite3.
+#         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
+#         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
+#     }
+# }
 
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, 'fixtures'),
@@ -70,7 +72,10 @@ ALLOWED_HOSTS = []
 
 SITE_ID = 1
 
-STATIC_URL = '/static/'
+STATIC_ROOT = '/var/www/ac_static_root'
+STATIC_URL = '/ac_test/ac_static/'
+#STATICFILES_DIRS = ('/var/www/django/fd/staticmedia',)
+
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = '^le6=#%$1z63o!#z^qr(r+^ix&iqx)@h*u$@8$bu&n8cv6m)go'
@@ -101,6 +106,7 @@ INSTALLED_APPS = (
     'autocomplete_light.example_apps.create_choice_on_the_fly',
 
     'navigation_autocomplete',
+    'ac_test',
 )
 
 

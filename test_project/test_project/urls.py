@@ -3,6 +3,8 @@ import django
 from django.conf.urls import patterns, include, url
 from django.views import generic
 
+from ac_test.views import test_view
+
 if django.VERSION < (1, 7):
     import autocomplete_light
     autocomplete_light.autodiscover()
@@ -24,6 +26,7 @@ urlpatterns = patterns('',
         include('autocomplete_light.example_apps.security_test.urls')),
     url(r'^non_admin_add_another/',
         include('autocomplete_light.example_apps.non_admin_add_another.urls')),
+    url(r'^test_url/', test_view),
     (r'^favicon.ico', generic.RedirectView.as_view(url='http://mozilla.org/favicon.ico')),
     (r'^$', generic.TemplateView.as_view(template_name='index.html'))
 )
